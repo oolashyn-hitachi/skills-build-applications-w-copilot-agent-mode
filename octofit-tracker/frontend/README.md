@@ -1,16 +1,26 @@
-# React + Vite
+# OctoFit Tracker frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The React 19 presentation tier uses Vite, React Router, Bootstrap, and the
+Bootstrap Icons set. Start it from the repository root with:
 
-Currently, two official plugins are available:
+```powershell
+npm run dev --prefix octofit-tracker/frontend
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The API base URL defaults to `http://localhost:8000`. In GitHub Codespaces,
+create `octofit-tracker/frontend/.env.local` with the Codespace name:
 
-## React Compiler
+```dotenv
+VITE_CODESPACE_NAME=your-codespace-name
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Vite loads this value when the development server starts. The frontend then
+uses `https://your-codespace-name-8000.app.github.dev`; restart Vite after
+changing `.env.local`. Do not include the `https://` prefix or the port in the
+value.
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+The app expects the API routes `/api/users/`, `/api/teams/`,
+`/api/activities/`, `/api/leaderboard/`, and `/api/workouts/`. Collection
+responses may be arrays or paginated objects with `results`, `items`, `data`,
+or `docs` arrays. The Express API enables CORS so the frontend can request it
+across the presentation and logic tiers.

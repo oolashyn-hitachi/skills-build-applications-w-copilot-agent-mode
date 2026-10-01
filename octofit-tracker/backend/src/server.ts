@@ -1,4 +1,5 @@
 import express, { type ErrorRequestHandler } from 'express';
+import cors from 'cors';
 import activitiesRouter from './routes/activities';
 import leaderboardRouter from './routes/leaderboard';
 import teamsRouter from './routes/teams';
@@ -13,6 +14,7 @@ const apiBaseUrl = codespaceName
   : 'http://localhost:8000';
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/api/health', (_request, response) => {
   response.json({ status: 'ok', apiBaseUrl });
